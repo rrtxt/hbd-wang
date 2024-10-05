@@ -17,18 +17,20 @@ const fetchData = () => {
 
         // Check if the iteration is over
         // Run amimation if so
-        if ( dataArr.length === dataArr.indexOf(customData) + 1 ) {
+        if (dataArr.length === dataArr.indexOf(customData) + 1) {
           animationTimeline();
-        } 
+        }
       });
     });
 };
 
+const audio = document.querySelector('audio')
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
+  audio.play()
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
@@ -299,8 +301,16 @@ const animationTimeline = () => {
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
     tl.restart();
+    audio.play()
   });
 };
 
 // Run fetch and animation in sequence
+window.addEventListener('blur', (e) => {
+  audio.pause()
+})
+
+window.addEventListener('focus', (e) => {
+  audio.play()
+})
 fetchData();
