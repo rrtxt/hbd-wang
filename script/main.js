@@ -25,6 +25,9 @@ const fetchData = () => {
 };
 
 const audio = document.querySelector('audio')
+document.addEventListener('click', (e) => {
+  audio.play()
+})
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
